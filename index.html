@@ -1,0 +1,510 @@
+
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Alioune SENGHOR</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e3a8a', // Dark blue
+                        secondary: '#374151', // Gray
+                        accent: '#ffffff', // White
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .profile-image {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Style pour la section Compétences avec vidéo background */
+        #skills {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #skills-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+        
+        #skills .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        #skills::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 0;
+        }
+        
+        /* Style pour la section Expérience avec image background */
+        #experience {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #experience::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('exp.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.2;
+            z-index: 0;
+        }
+        
+        #experience .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Style pour la section Formation avec image background */
+        #education {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #education::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('form.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        
+        #education .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Style pour la section Analytics avec image background */
+        #analytics {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #analytics::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('dem.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        #analytics .container {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white">
+    <!-- Navbar -->
+    <header class="fixed top-0 w-full bg-white dark:bg-gray-800 shadow-lg z-50">
+        <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <img src="sas.jpg" alt="Logo" class="w-10 h-10 rounded-full">
+                <div class="flex flex-col items-center">
+                    <div style="width: 120px; height: 1px; background-color: #D4AF37; margin-bottom: 8px;"></div>
+                    <h1 class="text-xl font-bold" style="color: #D4AF37; letter-spacing: 0.3em;">SAS PRO</h1>
+                    <div style="width: 120px; height: 1px; background-color: #D4AF37; margin-top: 8px;"></div>
+                </div>
+            </div>
+            <ul class="hidden md:flex space-x-6">
+                <li><a href="#hero" class="hover:text-primary transition text-gray-900 dark:text-white">Accueil</a></li>
+                <li><a href="#about" class="hover:text-primary transition text-gray-900 dark:text-white">À propos</a></li>
+                <li><a href="#skills" class="hover:text-primary transition text-gray-900 dark:text-white">Compétences</a></li>
+                <li><a href="#projects" class="hover:text-primary transition text-gray-900 dark:text-white">Projets</a></li>
+                <li><a href="#experience" class="hover:text-primary transition text-gray-900 dark:text-white">Expérience</a></li>
+                <li><a href="#education" class="hover:text-primary transition text-gray-900 dark:text-white">Formation</a></li>
+                <li><a href="#contact" class="hover:text-primary transition text-gray-900 dark:text-white">Contact</a></li>
+            </ul>
+            <button class="md:hidden" onclick="toggleMenu()">☰</button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 px-6 py-4">
+            <ul class="space-y-2">
+                <li><a href="#hero" class="block hover:text-primary transition text-gray-900 dark:text-white">Accueil</a></li>
+                <li><a href="#about" class="block hover:text-primary transition text-gray-900 dark:text-white">À propos</a></li>
+                <li><a href="#skills" class="block hover:text-primary transition text-gray-900 dark:text-white">Compétences</a></li>
+                <li><a href="#projects" class="block hover:text-primary transition text-gray-900 dark:text-white">Projets</a></li>
+                <li><a href="#experience" class="block hover:text-primary transition text-gray-900 dark:text-white">Expérience</a></li>
+                <li><a href="#education" class="block hover:text-primary transition text-gray-900 dark:text-white">Formation</a></li>
+                <li><a href="#contact" class="block hover:text-primary transition text-gray-900 dark:text-white">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section id="hero" class="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat text-white relative pt-20" style="background-image: url('Bg.jpg');">
+            <!-- Dark overlay for better text readability -->
+            <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+            <div class="relative z-10 text-center">
+                <img src="sas.jpg" alt="Alioune SENGHOR" class="w-64 h-64 rounded-full mx-auto mb-4 border-4 border-white">
+                <h1 class="text-4xl md:text-6xl font-bold mb-2" style="color: white; text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); border: 3px solid #D4AF37; padding: 20px; display: inline-block; border-radius: 10px; background: rgba(0, 0, 0, 0.3);">Seydina Alioune SENGHOR</h1>
+                <p class="text-xl md:text-2xl mb-4">Étudiant en Génie Informatique</p>
+                <p class="text-lg">Aspirant Ingénieur Logiciel | Passionné par les systèmes évolutifs</p>
+            </div>
+        </section>
+
+        <!-- À propos -->
+        <section id="about" class="py-20 bg-white dark:bg-gray-800">
+            <div class="container mx-auto px-6">
+                <div class="max-w-5xl mx-auto">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                        <!-- Image de profil à gauche -->
+                        <div class="flex justify-center items-start mt-8">
+                            <img src="Profil.jpg" alt="Photo de profil Alioune SENGHOR" class="profile-image">
+                        </div>
+                        
+                        <!-- Titre et texte de présentation à droite -->
+                        <div class="flex flex-col">
+                            <h2 class="text-3xl font-bold mb-6 text-primary">À propos</h2>
+                            <p class="text-lg mb-6 text-justify">Passionné par la technologie depuis plusieurs années, j'ai choisi le Génie Informatique afin de développer une expertise solide dans la conception et le développement d'applications.</p>
+                            <p class="text-lg mb-6 text-justify">Mon ambition est de devenir expert en génie logiciel, spécialisé dans la création de systèmes robustes, performants et évolutifs capables de répondre à des problématiques réelles.</p>
+                            <p class="text-lg text-justify">Aujourd'hui, je suis à la recherche d'opportunités en alternance et en freelance qui me permettront de mettre en pratique mes compétences, d'approfondir mes connaissances et de contribuer activement à des projets innovants.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Compétences -->
+        <section id="skills" class="py-20 bg-gray-100 dark:bg-gray-900">
+            <!-- Vidéo en background -->
+            <video id="skills-video" autoplay loop muted playsinline>
+                <source src="annime.mp4" type="video/mp4">
+            </video>
+            
+            <div class="container mx-auto px-6">
+                <div class="flex justify-center mb-10">
+                    <h2 class="text-3xl font-bold" style="background-color: white; color: black; padding: 12px 40px; border-radius: 50px;">Compétences</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition">
+                        <h3 class="text-xl font-semibold mb-4">Langages</h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-center"><i class="fas fa-code text-primary mr-2"></i> C</li>
+                            <li class="flex items-center"><i class="fab fa-python text-primary mr-2"></i> Python</li>
+                            <li class="flex items-center"><i class="fab fa-php text-primary mr-2"></i> PHP</li>
+                            <li class="flex items-center"><i class="fab fa-js-square text-primary mr-2"></i> JavaScript</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition">
+                        <h3 class="text-xl font-semibold mb-4">Frontend</h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-center"><i class="fab fa-html5 text-primary mr-2"></i> HTML</li>
+                            <li class="flex items-center"><i class="fab fa-css3-alt text-primary mr-2"></i> CSS</li>
+                            <li class="flex items-center"><i class="fas fa-wind text-primary mr-2"></i> Tailwind</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition">
+                        <h3 class="text-xl font-semibold mb-4">Backend</h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-center"><i class="fab fa-php text-primary mr-2"></i> PHP</li>
+                            <li class="flex items-center"><i class="fab fa-node-js text-primary mr-2"></i> Node.js</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition">
+                        <h3 class="text-xl font-semibold mb-4">Bases de données</h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-center"><i class="fas fa-database text-primary mr-2"></i> MySQL</li>
+                            <li class="flex items-center"><i class="fas fa-database text-primary mr-2"></i> MariaDB</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition">
+                        <h3 class="text-xl font-semibold mb-4">Outils</h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-center"><i class="fab fa-git-alt text-primary mr-2"></i> Git</li>
+                            <li class="flex items-center"><i class="fab fa-github text-primary mr-2"></i> GitHub</li>
+                            <li class="flex items-center"><i class="fas fa-code text-primary mr-2"></i> VS Code</li>
+                            <li class="flex items-center"><i class="fab fa-wordpress text-primary mr-2"></i> WordPress</li>
+                            <li class="flex items-center"><i class="fas fa-image text-primary mr-2"></i> Photoshop</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projets -->
+        <section id="projects" class="py-20 bg-white dark:bg-gray-800">
+            <div class="container mx-auto px-6">
+                <div class="flex justify-center mb-10">
+                    <h2 class="text-3xl font-bold" style="background-color: white; color: black; padding: 12px 40px; border-radius: 50px;">Projets</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Projet 1: Site Web Institutionnel -->
+                    <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition transform hover:scale-105">
+                        <h3 class="text-xl font-semibold mb-4">Site Web Institutionnel – TGI</h3>
+                        <p class="mb-4">Développement et personnalisation d'un site web sous WordPress durant mon stage.
+Intégration de contenu dynamique et adaptation du thème aux besoins du client.</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-3"><strong>Technologies :</strong> WordPress, HTML, CSS</p>
+                        <img src="Siteweb.jpg" alt="Site Web Institutionnel TGI" class="project-image">
+                    </div>
+                    
+                    <!-- Projet 2: Mini Application de Gestion -->
+                    <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition transform hover:scale-105">
+                        <h3 class="text-xl font-semibold mb-4">Mini Application de Gestion (Base de Données)</h3>
+                        <p class="mb-4">Conception d'une application simple permettant la gestion d'utilisateurs et de données en base MySQL.
+Implémentation des requêtes CRUD et structuration de la base relationnelle.</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-3"><strong>Technologies :</strong> PHP, MySQL</p>
+                        <img src="BD.jpg" alt="Application de Gestion Base de Données" class="project-image">
+                    </div>
+                    
+                    <!-- Projet 3: Portfolio Personnel -->
+                    <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition transform hover:scale-105">
+                        <h3 class="text-xl font-semibold mb-4">Portfolio Personnel Responsive</h3>
+                        <p class="mb-4">Conception et développement d'un portfolio moderne et responsive afin de présenter mes compétences et expériences.
+Mise en place d'un design adaptatif avec Tailwind CSS et gestion du mode sombre.</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-3"><strong>Technologies :</strong> HTML, Tailwind CSS, JavaScript</p>
+                        <img src="PF.jpg" alt="Portfolio Personnel Responsive" class="project-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Expérience -->
+        <section id="experience" class="py-20 bg-gray-100 dark:bg-gray-900">
+            <div class="container mx-auto px-6">
+                <div class="flex justify-center mb-10">
+                    <h2 class="text-3xl font-bold" style="background-color: white; color: black; padding: 12px 40px; border-radius: 50px;">Expérience</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-semibold text-center underline mb-4">Stage chez TGI</h3>
+                        <p>Durant ce stage, j'ai participé activement à la conception et au développement d'un site web sous WordPress, en assurant la configuration, la personnalisation des thèmes et l'intégration de contenus.
+
+J'ai également contribué à des travaux de câblage réseau, notamment l'installation et la configuration de connexions Ethernet, ce qui m'a permis de renforcer mes connaissances en infrastructure réseau et en organisation technique.
+
+Par ailleurs, j'ai réalisé des supports de communication visuelle (affiches publicitaires) à l'aide de Photoshop, en respectant les besoins et l'identité visuelle des clients.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-semibold text-center underline mb-4">Stage chez Aiglix</h3>
+                        <p>Durant ce stage, j'ai été initié à l'environnement de développement WebStorm, ce qui m'a permis de mieux comprendre l'organisation d'un projet structuré en développement web.
+
+J'ai participé à la réalisation de projets collaboratifs, en travaillant sur l'édition, la structuration et l'amélioration du code. Cette expérience m'a permis de renforcer mes bases en développement frontend et de découvrir les bonnes pratiques liées au travail en équipe.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formation -->
+        <section id="education" class="py-20 bg-white dark:bg-gray-800">
+            <div class="container mx-auto px-6">
+                <div class="flex justify-center mb-10">
+                    <h2 class="text-3xl font-bold" style="background-color: white; color: black; padding: 12px 40px; border-radius: 50px;">Formation</h2>
+                </div>
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-lg shadow-lg">
+                        <div class="flex flex-col md:flex-row gap-6 items-start">
+                            <div class="flex-shrink-0">
+                                <img src="unipro.jpg" alt="Logo UNIPRO" class="w-24 h-24 object-contain">
+                            </div>
+                            <div class="flex-1">
+                                <ul class="space-y-3 text-lg">
+                                    <li class="flex items-start">
+                                        <span class="text-primary mr-3 mt-1">•</span>
+                                        <span><strong>Licence 2 en Génie Informatique</strong> - Univers Professionel (UNIPRO)</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-primary mr-3 mt-1">•</span>
+                                        <span><strong>Développement Web :</strong> Formation complète HTML, CSS & JavaScript, PHP & MySQL avancé, Node.js ou Express.js</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-primary mr-3 mt-1">•</span>
+                                        <span><strong>Bases de données :</strong> MySQL avancé, Conception de bases relationnelles, Normalisation</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-primary mr-3 mt-1">•</span>
+                                        <span class="italic text-gray-600 dark:text-gray-400">(Plus tard : certifications, formations en ligne, etc.)</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="py-20 bg-gray-100 dark:bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-10 text-primary">Contact</h2>
+                <div class="max-w-md mx-auto text-center">
+                    <p class="mb-4"><strong>Email :</strong> aliounesenghor3@gmail.com</p>
+            <p class="mb-4"><strong>Téléphone :</strong>  <a href="tel:221779457498" class="text-primary hover:underline">77 945 74 98</a></p>
+            <p class="mb-4"><strong>WhatsApp :</strong> <a href="https://wa.me/221770417196" class="text-primary hover:underline"><i class="fab fa-whatsapp mr-2"></i>wa.me/221770417196</a></p>
+           
+            <p class="mb-4"><strong>LinkedIn :</strong> <a href="https://www.linkedin.com/in/alioune-senghor-910b3333b" class="text-primary hover:underline">https://www.linkedin.com/in/alioune-senghor-910b3333b</a></p>
+                    <p><strong>GitHub :</strong> <a href="https://github.com/aliounesenghor3" class="text-primary hover:underline">https://github.com/aliounesenghor3</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analytics Demo -->
+        <section id="analytics" class="py-20 bg-white dark:bg-gray-800">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-10 text-primary">Démonstration d'Analyse</h2>
+                <div class="text-center mb-6">
+                    <button onclick="executeAdvancedAnalyticsSequence()" class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">Générer le Rapport d'Analyse</button>
+                </div>
+                <div id="analytics-report" class="overflow-x-auto"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-6">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2026 SAS PRO EDU. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        async function executeAdvancedAnalyticsSequence() {
+            try {
+                // Simuler la récupération des données des plaintes (mock data)
+                const complaints = [
+                    { branch: 'Branche A', type: 'Type 1', count: 10 },
+                    { branch: 'Branche A', type: 'Type 2', count: 5 },
+                    { branch: 'Branche B', type: 'Type 1', count: 8 },
+                    { branch: 'Branche B', type: 'Type 2', count: 12 },
+                    { branch: 'Branche C', type: 'Type 1', count: 3 },
+                    { branch: 'Branche C', type: 'Type 2', count: 7 }
+                ];
+
+                // Traiter les données
+                const branchStats = {};
+                const typeStats = {};
+
+                complaints.forEach(complaint => {
+                    if (!branchStats[complaint.branch]) {
+                        branchStats[complaint.branch] = 0;
+                    }
+                    branchStats[complaint.branch] += complaint.count;
+
+                    if (!typeStats[complaint.type]) {
+                        typeStats[complaint.type] = 0;
+                    }
+                    typeStats[complaint.type] += complaint.count;
+                });
+
+                // Générer le tableau HTML
+                let tableHTML = `
+                    <table class="min-w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600">
+                        <thead>
+                            <tr class="bg-gray-100 dark:bg-gray-700">
+                                <th class="py-2 px-4 border-b">Branche</th>
+                                <th class="py-2 px-4 border-b">Nombre de Plaintes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                `;
+
+                for (const [branch, count] of Object.entries(branchStats)) {
+                    tableHTML += `
+                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <td class="py-2 px-4 border-b">${branch}</td>
+                            <td class="py-2 px-4 border-b">${count}</td>
+                        </tr>
+                    `;
+                }
+
+                tableHTML += `
+                        </tbody>
+                    </table>
+                    <br>
+                    <table class="min-w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600">
+                        <thead>
+                            <tr class="bg-gray-100 dark:bg-gray-700">
+                                <th class="py-2 px-4 border-b">Type de Plainte</th>
+                                <th class="py-2 px-4 border-b">Nombre de Plaintes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                `;
+
+                for (const [type, count] of Object.entries(typeStats)) {
+                    tableHTML += `
+                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <td class="py-2 px-4 border-b">${type}</td>
+                            <td class="py-2 px-4 border-b">${count}</td>
+                        </tr>
+                    `;
+                }
+
+                tableHTML += `
+                        </tbody>
+                    </table>
+                `;
+
+                // Afficher le rapport
+                document.getElementById('analytics-report').innerHTML = tableHTML;
+
+            } catch (error) {
+                console.error('Erreur lors de l\'exécution de l\'analyse:', error);
+                document.getElementById('analytics-report').innerHTML = '<p class="text-red-500">Erreur lors de la génération du rapport.</p>';
+            }
+        }
+    </script>
+</body>
+</html>
